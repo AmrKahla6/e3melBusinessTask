@@ -54,6 +54,9 @@
           </div>
         </div>
       </nav>
+
+
+
       @yield('content')
        <!-- Optional JavaScript; choose one of the two! -->
 
