@@ -8,7 +8,7 @@
 @show
 @extends('layout')
 @section('content')
-<div class="container">
+{{-- <div class="container">
     <div class="row">
       <div class="col">
           <select name="" id="category_id" class="form-control mt-2">
@@ -26,7 +26,7 @@
         </select>
       </div>
     </div>
-  </div>
+  </div> --}}
 <div class="row row-cols-1 row-cols-md-3 g-4 m-4" id="card_data">
     @if (count($courses) != 0)
         @include('welcome_paginate')
