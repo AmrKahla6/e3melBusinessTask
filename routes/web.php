@@ -21,3 +21,6 @@ Route::get('fetch_data', 'HomeController@fetchData');
 Route::resource('categories', 'CategoryController')->except(['create','update']);
 Route::delete('categories/{id}/soft-delete', 'CategoryController@softDelete')->name('categories.softDelete');
 Route::put('categories/update', 'CategoryController@update')->name('categories.update');
+
+//Courses Routes
+Route::resource('courses', 'CourseController')->except(['create','update']);

@@ -17,8 +17,8 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
-            $table->integer('rating')->nullable();
-            $table->integer('views')->nullable();
+            $table->integer('rating')->nullable()->default(0);
+            $table->integer('views')->nullable()->default(0);
             $table->enum('levels', ['beginner', 'immediat','high']);
             $table->integer('hours')->nullable();
              //if 0 show else hide
@@ -26,6 +26,7 @@ class CreateCoursesTable extends Migration
              $table->string('image')->nullable();
              $table->bigInteger('cat_id')->unsigned()->nullable();
              $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
+             $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -81,7 +81,7 @@ class CategoryController extends BaseController
             session()->flash('error', ('Error'));
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
-    }
+    }// end of updated  function
 
     /**
      * Remove the specified resource from storage.

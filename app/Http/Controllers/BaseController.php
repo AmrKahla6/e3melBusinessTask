@@ -54,38 +54,10 @@ class BaseController extends Controller
 
 
 
-    public function edit($id)
-    {
-        $row = $this->model->findOrFail($id);
-
-        $moduleName = $this->getModelName();
-
-        $pageTitle  = 'Edit ' . $moduleName ;
-
-        $pageDes    = 'Here you can  edit ' . $moduleName;
-
-        $folderName = $this->getClassNameFromModel();
-
-        $routeName = $folderName;
-
-        $append = $this->append();
-
-
-
-        return view('back-end.'.$folderName.'.edit' , compact(
-            'row',
-            'moduleName',
-            'pageTitle',
-            'pageDes',
-            'folderName',
-            'routeName',
-        ))->with($append);
-    }// end of edit function
-
 
     public function destroy($id)
     {
-        return "aaaaaa";
+
         $this->model->findOrFail($id)->forceDelete();
 
         return redirect(route($this->getClassNameFromModel().'.index'));
