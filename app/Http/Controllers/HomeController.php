@@ -18,6 +18,7 @@ class HomeController extends Controller
                 $query->where('active', '=', 0);
             })
             ->where('active', 0)
+            ->where('levels','immediat')
             ->paginate(9);
 
         $categories = Category::where('active', 0)->get();
@@ -37,10 +38,13 @@ class HomeController extends Controller
                 $q2->where('id', $request->category_id);
             });
         })
-        ->when($request->rate_id && $request->rate_id != null, function($q) use($request){
-            $q->where('rating', $request->rate_id);
+        ->when($request->rate_id && $request->rate_id != null, function($q3) use($request){
+            $q3->where('rating', $request->rate_id);
         })
-        ->where('active',0)->paginate(1);
+        ->when($request->level_id && $request->level_id != null, function($q4) use($request){
+            $q4->where('levels', $request->level_id);
+        })
+        ->where('active',0)->paginate(9);
 
         return view('welcome_paginate',compact('courses'))->render();
     }
