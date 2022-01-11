@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Course;
 use Illuminate\Http\Request;
+use App\Http\Requests\CourseRequest;
+use Intervention\Image\Facades\Image;
 
 class CourseController extends BaseController
 {
@@ -33,25 +36,25 @@ class CourseController extends BaseController
     {
         try {
             //Validate data first
-            $validated = $request->validated();
-            $data = $request->except('image');
+            $data = $request->validated();
 
              //Save Course Image
-         //Save Employee Image
-         if ($request->image) {
-            Image::make($request->image)->resize(300, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })
-                ->save(public_path('courses/' . $request->image->hashName()));
-            $data['image'] = $request->image->hashName();
-         }else{
-            $data['image'] = '1.png';
-         }
+             $file    = $request->file('image');
+             $fileName = time().Str::random('10').'.'.$file->getClientOriginalExtension();
+             $file->move(public_path('courses') , $fileName);
 
-            return $data;
 
             // Create New Course
-            $course = Course::create($data);
+            $course =  new Course;
+            $course->name = $data['name'];
+            $course->description = $data['description'];
+            $course->levels = $data['levels'];
+            $course->cat_id = $data['cat_id'];
+            $course->image = $fileName;
+            $course->hours = $data['hours'];
+            $course->active = $data['active'];
+            $course->save();
+
 
              //Message for success operation
              session()->flash('success','Course Added successfuly');
