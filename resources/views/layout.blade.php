@@ -63,7 +63,7 @@
 
     <script src="{{ URL::asset('assets/js/bootstrap-datatables/en/jquery.dataTables.min.js') }}"></script>
     <script src="{{ URL::asset('assets/js/bootstrap-datatables/en/dataTables.bootstrap4.min.js') }}"></script>
-
+    <script src="{{asset('image_preview.js')}}"></script>
     @yield('scripts')
   </body>
 </html>

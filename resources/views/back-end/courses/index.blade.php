@@ -3,8 +3,8 @@
 @section('content')
 
     <center> <h3 class="mt-3">Products</h3></center>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Add New Category
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#courseModal">
+        Add New Course
     </button>
 <pre></pre>
 <div class="container text-center">
@@ -54,8 +54,8 @@
 @endif
 
 </div>
-{{-- @include('back-end.categories.create')
-@include('back-end.categories.edit') --}}
+@include('back-end.courses.create')
+{{-- @include('back-end.categories.edit') --}}
 </div>
 @endsection
 

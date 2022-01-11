@@ -30,7 +30,7 @@ class BaseController extends Controller
             $rows = $rows->with($with);
         }
 
-        $rows = $rows->latest()->get();
+         $rows = $rows->latest()->get();
 
         $moduleName = $this->pluralModelName();
 
@@ -116,4 +116,6 @@ class BaseController extends Controller
     {
         return class_basename($this->model) ;
     }
+
+
 }// end of Parant controller
