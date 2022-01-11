@@ -7,8 +7,9 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{route('all-'.$routeName.'.store')}}" method="post" enctype="multipart/form-data">
+          <form action="all-courses/update" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
                 <div class="modal-body">
                     <div class="form-group mb-2">
                         <input type="hidden" name="id" id="id" value="">

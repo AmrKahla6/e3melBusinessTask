@@ -7,7 +7,7 @@ use App\Course;
 use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
 use Intervention\Image\Facades\Image;
-
+use Illuminate\Support\Facades\Storage;
 class CourseController extends BaseController
 {
     /**
@@ -67,27 +67,7 @@ class CourseController extends BaseController
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -96,9 +76,51 @@ class CourseController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CourseRequest $request)
     {
-        //
+        try {
+            //Validate data first
+            $validated = $request->validated();
+
+            //Find Request Id
+            $id = $request->id;
+            $course  = Course::find($id);
+
+            //Update Image
+            $old_img = Course::find($id)->image;
+            if($request->image)
+            {
+                Storage::disk('uploads')->delete('' . $old_img);
+
+                $new_img = $request->image->hashName();
+                Image::make($request->image)->resize(970, 520)->save(public_path('courses/' . $new_img));
+                 $image = $new_img ;
+            }
+            else
+            {
+                $image = $old_img;
+            }
+
+            //Update
+            $course->update([
+                'name'        => $request->name,
+                'description' => $request->description,
+                'rating'      => $request->rating,
+                'views'       => $request->views,
+                'levels'      => $request->levels,
+                'hours'       => $request->hours,
+                'active'      => $request->active,
+                'cat_id'      => $request->cat_id,
+                'image'       => $image,
+            ]);
+
+            //Message for success operation
+            session()->flash('success','Course Updated successfuly');
+            return redirect()->back();
+        } catch(\Exception $e) {
+            session()->flash('error', ('Error'));
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**

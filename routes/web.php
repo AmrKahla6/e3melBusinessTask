@@ -25,3 +25,4 @@ Route::put('categories/update', 'CategoryController@update')->name('categories.u
 //Courses Routes
 Route::resource('all-courses', 'CourseController');
 Route::delete('all-courses/{id}/soft-delete', 'CourseController@softDelete')->name('all-courses.softDelete');
+Route::put('all-courses/update', 'CourseController@update')->name('all-courses.update');
