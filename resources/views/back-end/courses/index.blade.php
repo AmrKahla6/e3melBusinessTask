@@ -39,7 +39,7 @@
                         data-id="{{ $item->id }}" data-category_name="{{ $item->name }}" data-category_status="{{ $item->active }}">
                     Edit
                 </button>
-                <form method="post" action="" style="display: inline-block">
+                <form method="post" action="{{route('all-courses.softDelete',$item->id)}}" style="display: inline-block">
                 @csrf
                 @method('Delete')
                 <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i>Soft Delete</button>

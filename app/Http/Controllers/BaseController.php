@@ -77,7 +77,8 @@ class BaseController extends Controller
     {
         $this->model->findOrFail($id)->delete();
         session()->flash('success','Deleted successfuly');
-        return redirect(route($this->getClassNameFromModel().'.index'));
+        // return redirect(route($this->getClassNameFromModel().'.index'));
+        return redirect()->back();
     }// end of soft delete function
 
 
