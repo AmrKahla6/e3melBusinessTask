@@ -32,7 +32,11 @@
                 <td style="color:red">Disactive</td>
              @endif
              <td>
-                <a class="btn btn-info btn-sm" href=""><i class="fa fa-edit"></i>Edit</a>
+                {{-- <a class="btn btn-info btn-sm" href=""><i class="fa fa-edit"></i>Edit</a> --}}
+                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                        data-id="{{ $item->id }}" data-category_name="{{ $item->name }}" data-category_status="{{ $item->active }}">
+                    Edit
+                </button>
                 <form method="post" action="{{route($routeName.'.softDelete',$item->id)}}" style="display: inline-block">
                 @csrf
                 @method('Delete')
@@ -49,5 +53,22 @@
 
 </div>
 @include('back-end.categories.create')
+@include('back-end.categories.edit')
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+            //Edit Units
+            $('#exampleModal1').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var category_name = button.data('category_name')
+                var category_status = button.data('category_status')
+                var modal = $(this)
+                modal.find('.modal-body #id').val(id);
+                modal.find('.modal-body #category_name').val(category_name);
+                modal.find('.modal-body #category_status').val(category_status);
+            })
+    </script>
 @endsection

@@ -18,5 +18,6 @@ Route::get('/','HomeController@index')->name('homePage');
 Route::get('fetch_data', 'HomeController@fetchData');
 
 //Category Routes
-Route::resource('categories', 'CategoryController')->except('create');
+Route::resource('categories', 'CategoryController')->except(['create','update']);
 Route::delete('categories/{id}/soft-delete', 'CategoryController@softDelete')->name('categories.softDelete');
+Route::put('categories/update', 'CategoryController@update')->name('categories.update');

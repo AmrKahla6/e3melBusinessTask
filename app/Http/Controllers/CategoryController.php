@@ -51,37 +51,36 @@ class CategoryController extends BaseController
     } // end of store function
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoiesRequest $request)
     {
-        //
+
+        try {
+            //Validate data first
+            $validated = $request->validated();
+
+            //Find Request Id
+            $id = $request->id;
+            $category = Category::find($id);
+
+            //Update
+            $category->update([
+                'name'   => $request->name,
+                'active' => $request->active,
+            ]);
+
+            //Message for success operation
+            session()->flash('success','Category Updated successfuly');
+            return redirect(route('categories.index'));
+        } catch(\Exception $e) {
+            session()->flash('error', ('Error'));
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     /**
