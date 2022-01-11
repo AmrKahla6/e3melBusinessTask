@@ -23,4 +23,4 @@ Route::delete('categories/{id}/soft-delete', 'CategoryController@softDelete')->n
 Route::put('categories/update', 'CategoryController@update')->name('categories.update');
 
 //Courses Routes
-Route::resource('courses', 'CourseController')->except(['create','update']);
+Route::resource('all-courses', 'CourseController');

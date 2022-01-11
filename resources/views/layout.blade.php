@@ -30,7 +30,7 @@
                 <a class="nav-link {{is_active('categories')}}" aria-current="page" href="{{route('categories.index')}}">Categories</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="#">Courses</a>
+                <a class="nav-link {{is_active('courses')}}" href="{{route('all-courses.index')}}">Courses</a>
               </li>
             </ul>
 
