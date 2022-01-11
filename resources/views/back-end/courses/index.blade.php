@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <center> <h3 class="mt-3">Products</h3></center>
+    <center> <h3 class="mt-3">Courses</h3></center>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#courseModal">
         Add New Course
     </button>
@@ -31,12 +31,13 @@
              <td>{{substr($item->description,0,20)}}</td>
              <td>{{$item->category->name}}</td>
              <td>
-                 <img src="{{$item->image_path}}" class="img-thumbnail" alt="" srcset="">
+                 <img src="{{$item->image_path}}" class="img-thumbnail" width="100" height="100" alt="" srcset="">
              </td>
              <td>
-                {{-- <a class="btn btn-info btn-sm" href=""><i class="fa fa-edit"></i>Edit</a> --}}
-                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                        data-id="{{ $item->id }}" data-category_name="{{ $item->name }}" data-category_status="{{ $item->active }}">
+                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#courseModalEdit"
+                        data-id="{{ $item->id }}" data-course_name="{{ $item->name }}" data-course_status="{{ $item->active }}"
+                        data-description="{{ $item->description }}" data-hours="{{ $item->hours }}" data-levels="{{ $item->levels }}"
+                        data-category="{{ $item->category->id }}" data-image="{{ $item->image_path }}" >
                     Edit
                 </button>
                 <form method="post" action="{{route('all-courses.softDelete',$item->id)}}" style="display: inline-block">
@@ -55,22 +56,33 @@
 
 </div>
 @include('back-end.courses.create')
-{{-- @include('back-end.categories.edit') --}}
+@include('back-end.courses.edit')
 </div>
 @endsection
 
 @section('scripts')
     <script>
             //Edit Units
-            $('#exampleModal1').on('show.bs.modal', function(event) {
+            $('#courseModalEdit').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget)
                 var id = button.data('id')
-                var category_name = button.data('category_name')
-                var category_status = button.data('category_status')
+                var course_name = button.data('course_name')
+                var course_status = button.data('course_status')
+                var description = button.data('description')
+                var hours = button.data('hours')
+                var levels = button.data('levels')
+                var category = button.data('category')
+                var image = button.data('image')
+
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
-                modal.find('.modal-body #category_name').val(category_name);
-                modal.find('.modal-body #category_status').val(category_status);
+                modal.find('.modal-body #courseName').val(course_name);
+                modal.find('.modal-body #courseHours').val(hours);
+                modal.find('.modal-body #courseCategory').val(category);
+                modal.find('.modal-body #courseStatus').val(course_status);
+                modal.find('.modal-body #courseLevels').val(levels);
+                modal.find('.modal-body #courseDesc').val(description);
+                modal.find('.modal-body #courseImage').attr('src',image);
             })
     </script>
 @endsection
