@@ -12,14 +12,28 @@
                 <div class="modal-body">
                     <div class="form-group mb-2">
                         <input type="hidden" name="id" id="id" value="">
+                        <span>Cours Name</span>
                         <input type="text" class="form-control" name="name"  id="courseName" placeholder="Course Name" required>
                     </div>
 
                     <div class="form-group mb-2">
-                        <input type="number" class="form-control" name="hours" value="{{ old('hours') }}" id="courseHours" placeholder="Course hours" required>
+                        <span>Cours Hours</span>
+                        <input type="number" class="form-control" name="hours"  id="courseHours" placeholder="Course hours" required>
                     </div>
 
                     <div class="form-group mb-2">
+                        <span>Cours Rate</span>
+                        <input type="number" class="form-control" name="rate" id="courseRate" placeholder="Course Rate" required>
+                    </div>
+
+                    <div class="form-group mb-2">
+                        <span>Cours Views</span>
+                        <input type="number" class="form-control" name="views" id="courseViews" placeholder="Course views" required>
+                    </div>
+
+
+                    <div class="form-group mb-2">
+                        <span>Cours Category</span>
                         <select name="cat_id" id="courseCategory" class="form-control" required>
                             <option value="" selected disabled>Choose Category</option>
                             @foreach ($rows as $item)
@@ -30,6 +44,7 @@
 
 
                     <div class="form-group mb-2">
+                        <span>Cours Status</span>
                         <select name="active" id="courseStatus" class="form-control" required>
                             <option value="" selected disabled>Choose Status</option>
                             <option value="0">Active</option>
@@ -37,6 +52,7 @@
                         </select>
                     </div>
                     <div class="form-group mb-2">
+                        <span>Cours Level</span>
                         <select name="levels" id="courseLevels" class="form-control" required>
                             <option value="" selected disabled>Choose Level</option>
                             <option value="beginner">beginner</option>
@@ -45,6 +61,7 @@
                         </select>
                     </div>
                     <div class="form-group mb-2">
+                        <span>Cours Description</span>
                         <textarea name="description" id="courseDesc" placeholder="Description Here" class="form-control" cols="30" rows="10">{{old('name')}}</textarea>
                     </div>
 

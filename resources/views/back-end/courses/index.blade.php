@@ -37,7 +37,8 @@
                 <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#courseModalEdit"
                         data-id="{{ $item->id }}" data-course_name="{{ $item->name }}" data-course_status="{{ $item->active }}"
                         data-description="{{ $item->description }}" data-hours="{{ $item->hours }}" data-levels="{{ $item->levels }}"
-                        data-category="{{ $item->category->id }}" data-image="{{ $item->image_path }}" >
+                        data-category="{{ $item->category->id }}" data-image="{{ $item->image_path }}"
+                        data-rate="{{ $item->rating }}"  data-views="{{ $item->views }}">
                     Edit
                 </button>
                 <form method="post" action="{{route('all-courses.softDelete',$item->id)}}" style="display: inline-block">
@@ -73,7 +74,8 @@
                 var levels = button.data('levels')
                 var category = button.data('category')
                 var image = button.data('image')
-
+                var rate = button.data('rate')
+                var views = button.data('views')
                 var modal = $(this)
                 modal.find('.modal-body #id').val(id);
                 modal.find('.modal-body #courseName').val(course_name);
@@ -83,6 +85,8 @@
                 modal.find('.modal-body #courseLevels').val(levels);
                 modal.find('.modal-body #courseDesc').val(description);
                 modal.find('.modal-body #courseImage').attr('src',image);
+                modal.find('.modal-body #courseRate').val(rate);
+                modal.find('.modal-body #courseViews').val(views);
             })
     </script>
 @endsection
