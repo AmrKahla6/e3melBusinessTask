@@ -28,7 +28,7 @@ class CourseRequest extends FormRequest
             'description'   => ['required' , 'max:500'],
             'hours'         => ['required' , 'numeric'],
             'levels'        => ['required'],
-            'hours'         => ['required'],
+            'hours'         => ['required', 'numeric'],
             'active'        => ['required'],
             'image'         => ['required'],
             'cat_id'        => ['required'],

@@ -37,9 +37,11 @@
   </div>
 </div>
 </div>
+
 <input type="hidden" value="" id="stack_category_id">
 <input type="hidden" value="" id="stack_rate_id">
 <input type="hidden" value="" id="stack_level_id">
+
 <div class="row row-cols-1 row-cols-md-3 g-4 m-4" id="card_data">
 @if (count($courses) != 0)
     @include('welcome_paginate')
@@ -50,6 +52,7 @@
 
 @section('scripts')
 <script>
+
 
 //Change Category Select
 $(".container").on("change", "#category_id", function(e){

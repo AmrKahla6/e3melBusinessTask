@@ -25,29 +25,28 @@ class BaseController extends Controller
 
         $with = $this->with();
 
+        //If no relationship
         if(!empty($with))
         {
             $rows = $rows->with($with);
         }
 
+        //Get all row order by latest
          $rows = $rows->latest()->get();
 
+         //Get Name of Model
         $moduleName = $this->pluralModelName();
-
         $sModelName = $this->getModelName();
 
-        $pageTitle  = 'Control '.$moduleName ;
 
+        //Get Route Name
         $routeName =  $this->getClassNameFromModel();
 
-        $pageDes    = 'Here you can add / edit / update / delete ' . $moduleName;
 
         return view('back-end.'.$this->getClassNameFromModel().'.index' , compact(
             'rows',
             'moduleName',
             'sModelName',
-            'pageTitle',
-            'pageDes',
             'routeName'
         ));
     }// end of index function
@@ -57,10 +56,10 @@ class BaseController extends Controller
 
     public function destroy($id)
     {
-
+        //Fine Model with id then deleted it
         $this->model->findOrFail($id)->forceDelete();
-
-        return redirect(route($this->getClassNameFromModel().'.index'));
+        session()->flash('success','Deleted successfuly');
+        return redirect()->back();
 
     }// end of destroy function
 
@@ -75,6 +74,7 @@ class BaseController extends Controller
 
     public function softDelete($id)
     {
+        //Fine Model with id then soft delete it
         $this->model->findOrFail($id)->delete();
         session()->flash('success','Deleted successfuly');
         // return redirect(route($this->getClassNameFromModel().'.index'));

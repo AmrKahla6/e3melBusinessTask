@@ -20,6 +20,9 @@ class CourseController extends BaseController
         parent::__construct($model);
     }// end of __constract child function
 
+    /**
+     * With Category relationship
+     */
     protected function with()
     {
         return ['category'];
@@ -123,14 +126,4 @@ class CourseController extends BaseController
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

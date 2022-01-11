@@ -25,7 +25,7 @@ class CategoiesRequest extends FormRequest
     {
         return [
             'name'    => ['required' , 'max:191'],
-            'active'  => ['required' , 'max:191'],
+            'active'  => ['required'],
         ];
     }
 }
