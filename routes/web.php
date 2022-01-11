@@ -13,5 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Home Page Routes
 Route::get('/','HomeController@index')->name('homePage');
 Route::get('fetch_data', 'HomeController@fetchData');
+
+//Category Routes
+Route::resource('categories', 'CategoryController')->except('create');
