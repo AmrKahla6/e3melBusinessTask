@@ -19,3 +19,4 @@ Route::get('fetch_data', 'HomeController@fetchData');
 
 //Category Routes
 Route::resource('categories', 'CategoryController')->except('create');
+Route::delete('categories/{id}/soft-delete', 'CategoryController@softDelete')->name('categories.softDelete');

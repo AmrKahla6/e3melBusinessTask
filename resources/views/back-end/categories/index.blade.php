@@ -33,10 +33,10 @@
              @endif
              <td>
                 <a class="btn btn-info btn-sm" href=""><i class="fa fa-edit"></i>Edit</a>
-                <form method="post" action="" style="display: inline-block">
-                @csrf()
-                @method('delete')
-                <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i>Delete</button>
+                <form method="post" action="{{route($routeName.'.softDelete',$item->id)}}" style="display: inline-block">
+                @csrf
+                @method('Delete')
+                <button type="submit" class="btn btn-danger btn-sm delete"><i class="fa fa-trash"></i>Soft Delete</button>
                 </form>
              </td>
              </tr>

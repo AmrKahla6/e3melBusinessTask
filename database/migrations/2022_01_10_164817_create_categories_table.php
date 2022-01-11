@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name')->nullable();
             //if 0 show else hide
             $table->boolean('active')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

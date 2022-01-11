@@ -52,29 +52,7 @@ class BaseController extends Controller
         ));
     }// end of index function
 
-    public function create()
-    {
-        $moduleName = $this->getModelName();
 
-        $pageTitle  = ' Create ' .$moduleName  ;
-
-        $pageDes    = 'Here you can  create new ' . $moduleName;
-
-        $folderName = $this->getClassNameFromModel();
-
-        $routeName = $folderName;
-
-        $append = $this->append();
-
-
-        return view('back-end.'.$folderName.'.create' , compact(
-            'moduleName',
-            'pageTitle',
-            'pageDes',
-            'folderName',
-            'routeName',
-        ))->with($append);
-    }// end of create function
 
     public function edit($id)
     {
@@ -107,12 +85,31 @@ class BaseController extends Controller
 
     public function destroy($id)
     {
-
-        $this->model->findOrFail($id)->delete();
+        return "aaaaaa";
+        $this->model->findOrFail($id)->forceDelete();
 
         return redirect(route($this->getClassNameFromModel().'.index'));
 
     }// end of destroy function
+
+
+
+    /**
+     * Soft Deletee the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function softDelete($id)
+    {
+        $this->model->findOrFail($id)->delete();
+        session()->flash('success','Deleted successfuly');
+        return redirect(route($this->getClassNameFromModel().'.index'));
+    }// end of soft delete function
+
+
+
 
 
     protected function with()

@@ -52,7 +52,7 @@
         </div>
       </nav>
 
-
+      @include('partials._session')
 
       @yield('content')
        <!-- Optional JavaScript; choose one of the two! -->
