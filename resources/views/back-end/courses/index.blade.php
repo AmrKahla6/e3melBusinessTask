@@ -19,7 +19,8 @@
          <th scope="col">Course Name</th>
          <th scope="col">Course Description</th>
          <th scope="col">Course Category</th>
-         <th scope="col">Course Iamge</th>
+         <th scope="col">Course Status</th>
+         <th scope="col">Course Image</th>
          <th>Operation</th>
        </tr>
      </thead>
@@ -28,8 +29,13 @@
              <tr>
              <th scope="row">{{$key +1}}</th>
              <td>{{$item->name}}</td>
-             <td>{{substr($item->description,0,20)}}</td>
+             <td>{{substr($item->description,0,10)}}</td>
              <td>{{$item->category->name}}</td>
+             @if ($item->active == 0)
+                <td style="color:green">Active</td>
+            @else
+                <td style="color:red">Disactive</td>
+            @endif
              <td>
                  <img src="{{$item->image_path}}" class="img-thumbnail" width="100" height="100" alt="" srcset="">
              </td>

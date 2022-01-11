@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <center> <h3 class="mt-3">Products</h3></center>
+    <center> <h3 class="mt-3">Categories</h3></center>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Add New Category
     </button>

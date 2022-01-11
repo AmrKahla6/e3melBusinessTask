@@ -17,7 +17,7 @@ $factory->define(Course::class, function (Faker $faker) {
         'levels'      => $faker->randomElement(['beginner' ,'immediat', 'high']),
         // 'levels'      => $levels[rand(0,2)]
         'hours'       => rand(12,100),
-        'active'      => rand(0,1),
+        'active'      => 1,
         'image'       => rand(1,10).'.png',
         'cat_id'      => function(){
             return Category::all()->random();

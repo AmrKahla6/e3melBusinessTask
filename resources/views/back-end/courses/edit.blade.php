@@ -37,8 +37,11 @@
                         <span>Cours Category</span>
                         <select name="cat_id" id="courseCategory" class="form-control" required>
                             <option value="" selected disabled>Choose Category</option>
-                            @foreach ($rows as $item)
-                                <option value="{{$item->category->id}}">{{$item->category->name}}</option>
+                            @php
+                                $categories = App\Category::where('active',0)->get();
+                            @endphp
+                            @foreach ($categories as $item)
+                                <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
                         </select>
                     </div>
